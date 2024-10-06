@@ -1,0 +1,69 @@
+### Check API status
+GET http://localhost:4000/api
+Content-Type: application/json
+
+
+### Register a new user
+POST http://localhost:4000/api/register
+Content-Type: application/json
+
+{
+   "firstName": "Ola",
+   "lastName": "Jide",
+   "username": "olajide",
+   "email": "olajide@example.com",
+   "password": "password123"
+}
+
+### Login a user
+POST http://localhost:4000/api/login
+Content-Type: application/json
+
+{
+   "email": "olajide@example.com",
+   "password": "password123"
+}
+
+### Get a list of blogs (no token required)
+GET http://localhost:4000/api/blog
+Content-Type: application/json
+
+
+### Create a new blog post (requires an access token)
+POST http://localhost:4000/api/blog
+Authorization: Bearer {eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDE3NWY3NGI2M2JmYzZhNThmYWUzOCIsImlhdCI6MTcyODIxMDM5NiwiZXhwIjoxNzI4MjEzOTk2fQ.hpGb6Va3OQZrD5Z3Qi3E4gwoD1exIPylKNpBoMKhqwQ}
+Content-Type: application/json
+
+{
+  "title": " malowa oh",
+  "description": "A new blog post",
+  "tags": ["tech", "coding", "webdev"],
+  "body": "This is the body of the blog post.",
+  "reading_time": "5 minutes"
+}
+
+
+
+### Get a single blog post by ID (no token required)
+GET http://localhost:4000/api/blog/67029cd6009645118cb7efb2
+Content-Type: application/json
+
+
+### Update a blog post (requires authentication)
+PUT http://localhost:4000/api/blog/67029cd6009645118cb7efb2
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjY3MDE3NWY3NGI2M2JmYzZhNThmYWUzOCIsImlhdCI6MTcyODIyNDUzNiwiZXhwIjoxNzI4MjI4MTM2fQ.fgCw3p9b6fhAtriBntINkSDu9DuS2bP1GTTv-cn9RKM
+Content-Type: application/json
+
+{
+   "title": "Updated Blog Post Title",
+   "description": "Updated description",
+   "body": "Updated content for the blog post...",
+   "tags": ["updated", "webdev"],
+   "reading_time": "7 minutes"
+}
+
+
+### Delete a blog post (requires authentication)
+DELETE http://localhost:4000/api/blog/{{blog_id}}
+Authorization: Bearer {{token_from_login}}
+Content-Type: application/json
